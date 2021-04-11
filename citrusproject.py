@@ -193,6 +193,8 @@ class RootWindow(tkinter.Frame):
                         self.citri_says.config(text="Sorry but that time is invalid...")
                     else:
                         cp.app_dict[findApps] = [datetime.now() + timedelta(hours=hour, minutes=minute, seconds=sec), 1]
+                        self.pet()
+                        self.citri_says.config(text="I set the reminder for you!")
 
                 except ValueError:
                     self.sad()
@@ -222,6 +224,8 @@ class RootWindow(tkinter.Frame):
                         if new_time < datetime.now():
                             new_time += timedelta(days=1)
                         cp.app_dict[findApps] = [new_time, 1]
+                        self.pet()
+                        self.citri_says.config(text="I set the reminder for you!")
 
                 except ValueError:
                     self.sad()
@@ -229,6 +233,8 @@ class RootWindow(tkinter.Frame):
 
             elif self.radiovar.get() == 3:
                 cp.app_dict[findApps][1] = 0
+                self.pet()
+                self.citri_says.config(text="I removed the reminder for you!")
 
     def snooze(self):
         try:
@@ -250,6 +256,8 @@ class RootWindow(tkinter.Frame):
                 self.citri_says.config(text="Sorry but that time is invalid...")
             else:
                 cp.set_snooze(timedelta(hours=hour, minutes=minute, seconds=sec))
+                self.pet()
+                self.citri_says.config(text="I set the snooze for you!")
 
         except ValueError:
             self.sad()
